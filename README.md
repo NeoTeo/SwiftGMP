@@ -4,4 +4,4 @@
 
 # Requirements
 
-Currently requires libgmp.a
+Currently requires libgmp.a installed at the default Brew location.
