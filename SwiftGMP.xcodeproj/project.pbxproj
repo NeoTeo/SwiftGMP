@@ -10,8 +10,7 @@
 		AB342C3F1B0DD0DF00BB8D19 /* SwiftGMP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB342C331B0DD0DF00BB8D19 /* SwiftGMP.framework */; };
 		AB342C461B0DD0DF00BB8D19 /* SwiftGMPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB342C451B0DD0DF00BB8D19 /* SwiftGMPTests.swift */; };
 		AB342C501B0DD43300BB8D19 /* SwiftGMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB342C4F1B0DD43300BB8D19 /* SwiftGMP.swift */; };
-		AB7A48D81B0DF8C20065C0D5 /* libgmp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7A48D71B0DF8C20065C0D5 /* libgmp.a */; };
-		AB7A48DA1B0DF8E40065C0D5 /* libgmp.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB7A48D71B0DF8C20065C0D5 /* libgmp.a */; };
+		AB7A48E11B0FDE700065C0D5 /* libgmp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7A48E01B0FDE700065C0D5 /* libgmp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +30,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AB7A48DA1B0DF8E40065C0D5 /* libgmp.a in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,7 +42,7 @@
 		AB342C441B0DD0DF00BB8D19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB342C451B0DD0DF00BB8D19 /* SwiftGMPTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGMPTests.swift; sourceTree = "<group>"; };
 		AB342C4F1B0DD43300BB8D19 /* SwiftGMP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGMP.swift; sourceTree = "<group>"; };
-		AB7A48D71B0DF8C20065C0D5 /* libgmp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgmp.a; path = ../../../../../../../usr/local/Cellar/gmp/6.0.0a/lib/libgmp.a; sourceTree = "<group>"; };
+		AB7A48E01B0FDE700065C0D5 /* libgmp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgmp.a; path = GMPLib/libgmp.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB7A48D81B0DF8C20065C0D5 /* libgmp.a in Frameworks */,
+				AB7A48E11B0FDE700065C0D5 /* libgmp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,7 +68,7 @@
 		AB342C291B0DD0DF00BB8D19 = {
 			isa = PBXGroup;
 			children = (
-				AB7A48D71B0DF8C20065C0D5 /* libgmp.a */,
+				AB7A48E01B0FDE700065C0D5 /* libgmp.a */,
 				AB342C4F1B0DD43300BB8D19 /* SwiftGMP.swift */,
 				AB342C351B0DD0DF00BB8D19 /* SwiftGMP */,
 				AB342C421B0DD0DF00BB8D19 /* SwiftGMPTests */,
@@ -352,6 +350,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/gmp/6.0.0a/lib,
+					"$(PROJECT_DIR)/GMPLib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -375,6 +374,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/gmp/6.0.0a/lib,
+					"$(PROJECT_DIR)/GMPLib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
