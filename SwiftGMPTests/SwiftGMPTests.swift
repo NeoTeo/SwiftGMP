@@ -24,8 +24,14 @@ class SwiftGMPTests: XCTestCase {
     
     func testExample() {
         // This is an example of a functional test case.
-        var b = IntBig().newIntBig(58)
-        println(b)
+        var b = IntBig(x: 246375425603637729)//.newIntBig(58)
+        var c = IntBig(x: 58)
+        
+        var d = b.mul(b, y: c)
+        println("mul: \(d.string())")
+        
+        d = b.add(b, y: c)
+        println("add: \(d.string())")
         XCTAssert(true, "Pass")
     }
     

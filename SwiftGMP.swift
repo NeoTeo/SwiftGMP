@@ -19,6 +19,11 @@ public struct IntBig {
         __gmpz_init(&i)
         inited = true
     }
+    
+    public init(x: Int) {
+        self.init()
+        setInt64(x)
+    }
 }
 
 extension IntBig {
@@ -58,11 +63,50 @@ extension IntBig {
                 __gmpz_neg(&i, &i)
             }
         }
-        return IntBig()
+        return self
     }
     
-    public func newIntBig(x: Swift.Int) -> IntBig {
-        var newInt = IntBig()
-        return newInt.setInt64(x)
+//    public func newIntBig(x: Swift.Int) -> IntBig {
+//        var newInt = IntBig()
+//        return newInt.setInt64(x)
+//    }
+    
+//    public mutating func add(inout x: IntBig, inout y: IntBig) -> IntBig {
+public func add(x: IntBig, y: IntBig) -> IntBig {
+        var a = x
+        var b = y
+        var c = self
+        __gmpz_add(&c.i, &a.i, &b.i)
+
+//        __gmpz_add(&i, &x.i, &y.i)
+        return c
     }
+    
+    public func sub(x: IntBig, y: IntBig) -> IntBig {
+        var a = x
+        var b = y
+        var c = self
+        __gmpz_sub(&c.i, &a.i, &b.i)
+        return c
+    }
+    
+    public func mul(x: IntBig, y: IntBig) -> IntBig {
+        var a = x
+        var b = y
+        var c = self
+        __gmpz_mul(&c.i, &a.i, &b.i)
+        return c
+    }
+    
+    func inBase(base: Int) -> String {
+        var ti = i
+        let p = __gmpz_get_str(nil, CInt(base), &ti)
+        let s = String.fromCString(p)
+        return s!
+    }
+    
+    public func string() -> String {
+        return inBase(10)
+    }
+
 }
