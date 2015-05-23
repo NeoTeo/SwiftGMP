@@ -119,10 +119,10 @@ public func add(x: IntBig, y: IntBig) -> IntBig {
     
     public func bytes() -> [uint8] {
         var c = self
-        var b = [uint8]()
-        b.reserveCapacity(1 + ((bitLen() + 7) / 8))
+        let size = 1 + ((bitLen() + 7) / 8)
+        var b = [uint8](count: size, repeatedValue: uint8(0))
         var n = size_t(count(b))
-        __gmpz_export(&b[0], &n, 1, 1, 1, 0, &c.i)
+        __gmpz_export(&b, &n, 1, 1, 1, 0, &c.i)
         
         return Array(b[0..<n])
     }
