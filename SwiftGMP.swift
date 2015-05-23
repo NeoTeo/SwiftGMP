@@ -45,6 +45,14 @@ extension IntBig {
     func clear(inout z: IntBig) {
         _Int_finalize(&z)
     }
+    
+    func sign() -> Int {
+        if self.i._mp_size < 0 {
+            return -1
+        } else {
+            return Int(self.i._mp_size)
+        }
+    }
 
     mutating func setInt64(x: Swift.Int) -> IntBig {
         let y = CLong(x)
@@ -108,5 +116,22 @@ public func add(x: IntBig, y: IntBig) -> IntBig {
     public func string() -> String {
         return inBase(10)
     }
+    
+    public func bytes() -> [uint8] {
+        var c = self
+        var b = [uint8]()
+        b.reserveCapacity(1 + ((bitLen() + 7) / 8))
+        var n = size_t(count(b))
+        __gmpz_export(&b[0], &n, 1, 1, 1, 0, &c.i)
+        
+        return Array(b[0..<n])
+    }
 
+    func bitLen() -> Int {
+        if self.sign() == 0 {
+            return 0
+        }
+        var c = self
+        return Int(__gmpz_sizeinbase(&c.i, 2))
+    }
 }
