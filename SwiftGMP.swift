@@ -10,6 +10,7 @@ import Foundation
 import GMP
 
 /// Multiple-precision Integer
+// Swift IntBig are, just like regular Int, by value-based, so no changing it once inited.
 public struct IntBig {
     var i: mpz_t
     var inited: Bool
@@ -19,28 +20,45 @@ public struct IntBig {
         __gmpz_init(&i)
         inited = true
     }
-    
-    public init(x: Int) {
-        self.init()
-        setInt64(x)
-    }
 }
 
 extension IntBig {
+    
+    public init(_ x: Int) {
+        self.init()
+
+        let y = CLong(x)
+        if Int(y) == x {
+            __gmpz_set_si(&i, y)
+        } else {
+            var negative = false
+            var nx = x
+            if x < 0 {
+                nx = -x
+                negative = true
+            }
+            
+            __gmpz_import(&i, 1, 0, 8, 0, 0, &nx)
+            if negative {
+                __gmpz_neg(&i, &i)
+            }
+        }
+        
+    }
+
+    public init(buffer: [uint8]) {
+        self.init(0)
+        var b = buffer
+        if buffer.count != 0 {
+            __gmpz_import(&i, size_t(buffer.count), 1, 1, 1, 0, &b)
+        }
+    }
 
     func _Int_finalize(inout z: IntBig) {
         if z.inited {
             __gmpz_clear(&z.i)
         }
     }
-
-    // Done by the struct init
-//    func doInit(inout z: IntBig) {
-//
-//        if z.inited { return }
-//        z.inited = true
-//        __gmpz_init(&z.i)
-//    }
     
     func clear(inout z: IntBig) {
         _Int_finalize(&z)
@@ -54,30 +72,26 @@ extension IntBig {
         }
     }
 
-    mutating func setInt64(x: Swift.Int) -> IntBig {
-        let y = CLong(x)
-        if Int(y) == x {
-            __gmpz_set_si(&i, y)
-        } else {
-            var negative = false
-            var nx = x
-            if x < 0 {
-                nx = -x
-                negative = true
-            }
-
-            __gmpz_import(&i, 1, 0, 8, 0, 0, &nx)
-            if negative {
-                __gmpz_neg(&i, &i)
-            }
-        }
-        return self
-    }
     
-//    public func newIntBig(x: Swift.Int) -> IntBig {
-//        var newInt = IntBig()
-//        return newInt.setInt64(x)
-//    }
+    // Int64
+    public func getInt64() -> Int64? {
+        var oldIntBig = self
+        
+        if oldIntBig.inited == false { return nil }
+        
+        if __gmpz_fits_slong_p(&oldIntBig.i) != 0 {
+            return Int64(__gmpz_get_si(&oldIntBig.i))
+        }
+        // Undefined result if > 64 return nil
+        if oldIntBig.bitLen() > 64 { return nil }
+        
+        var newInt64 = Int64()
+        __gmpz_export(&newInt64, nil, -1, 8, 0, 0, &oldIntBig.i)
+        if oldIntBig.sign() < 0 {
+            newInt64 = -newInt64
+        }
+        return newInt64
+    }
 
     
     public func abs(x: IntBig) -> IntBig {
@@ -129,20 +143,6 @@ extension IntBig {
         return inBase(10)
     }
     
-    // setBytes interprets buf as the bytes of a big-endian unsigned integer,
-    // sets c to that value and returns it.
-    public func setBytes(buf: [uint8]) -> IntBig {
-        var c = self
-        var b = buf
-        if buf.count == 0 {
-            c.setInt64(0)
-        } else {
-            __gmpz_import(&c.i, size_t(buf.count), 1, 1, 1, 0, &b)
-        }
-        return c
-    }
-    
-    // cmp
     // DivMod sets z to the quotient x div y and m to the modulus x mod y
     // and returns the pair (z, m) for y != 0.
     // If y == 0, a division-by-zero run-time panic occurs.
