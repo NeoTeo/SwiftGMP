@@ -10,6 +10,8 @@
 		AB342C3F1B0DD0DF00BB8D19 /* SwiftGMP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB342C331B0DD0DF00BB8D19 /* SwiftGMP.framework */; };
 		AB342C461B0DD0DF00BB8D19 /* SwiftGMPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB342C451B0DD0DF00BB8D19 /* SwiftGMPTests.swift */; };
 		AB342C501B0DD43300BB8D19 /* SwiftGMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB342C4F1B0DD43300BB8D19 /* SwiftGMP.swift */; };
+		AB6C4CBA1C0A576F00CC2D74 /* libgmp.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB7A48E01B0FDE700065C0D5 /* libgmp.a */; };
+		AB6C4CBB1C0A577A00CC2D74 /* libgmp.a in Resources */ = {isa = PBXBuildFile; fileRef = AB7A48E01B0FDE700065C0D5 /* libgmp.a */; };
 		AB7A48E11B0FDE700065C0D5 /* libgmp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7A48E01B0FDE700065C0D5 /* libgmp.a */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +32,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				AB6C4CBA1C0A576F00CC2D74 /* libgmp.a in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +212,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB6C4CBB1C0A577A00CC2D74 /* libgmp.a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
