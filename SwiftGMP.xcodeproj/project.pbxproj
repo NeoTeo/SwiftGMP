@@ -11,6 +11,7 @@
 		AB342C461B0DD0DF00BB8D19 /* SwiftGMPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB342C451B0DD0DF00BB8D19 /* SwiftGMPTests.swift */; };
 		AB342C501B0DD43300BB8D19 /* SwiftGMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB342C4F1B0DD43300BB8D19 /* SwiftGMP.swift */; };
 		AB6C4CBF1C0A68E600CC2D74 /* libgmp.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB7A48E01B0FDE700065C0D5 /* libgmp.a */; };
+		AB6C4CC31C0B8CB700CC2D74 /* gmp.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB6C4CC21C0B8CB700CC2D74 /* gmp.h */; };
 		AB7A48E11B0FDE700065C0D5 /* libgmp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7A48E01B0FDE700065C0D5 /* libgmp.a */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				AB6C4CC31C0B8CB700CC2D74 /* gmp.h in CopyFiles */,
 				AB6C4CBF1C0A68E600CC2D74 /* libgmp.a in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -44,6 +46,7 @@
 		AB342C441B0DD0DF00BB8D19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB342C451B0DD0DF00BB8D19 /* SwiftGMPTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGMPTests.swift; sourceTree = "<group>"; };
 		AB342C4F1B0DD43300BB8D19 /* SwiftGMP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGMP.swift; sourceTree = "<group>"; };
+		AB6C4CC21C0B8CB700CC2D74 /* gmp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = gmp.h; path = GMPLib/gmp.h; sourceTree = "<group>"; };
 		AB7A48E01B0FDE700065C0D5 /* libgmp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgmp.a; path = GMPLib/libgmp.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,6 +73,7 @@
 		AB342C291B0DD0DF00BB8D19 = {
 			isa = PBXGroup;
 			children = (
+				AB6C4CC21C0B8CB700CC2D74 /* gmp.h */,
 				AB7A48E01B0FDE700065C0D5 /* libgmp.a */,
 				AB342C4F1B0DD43300BB8D19 /* SwiftGMP.swift */,
 				AB342C351B0DD0DF00BB8D19 /* SwiftGMP */,
