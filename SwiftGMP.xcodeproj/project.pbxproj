@@ -44,7 +44,6 @@
 		AB342C441B0DD0DF00BB8D19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB342C451B0DD0DF00BB8D19 /* SwiftGMPTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGMPTests.swift; sourceTree = "<group>"; };
 		AB342C4F1B0DD43300BB8D19 /* SwiftGMP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGMP.swift; sourceTree = "<group>"; };
-		AB6C4CC21C0B8CB700CC2D74 /* gmp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = gmp.h; path = GMPLib/gmp.h; sourceTree = "<group>"; };
 		AB7A48E01B0FDE700065C0D5 /* libgmp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgmp.a; path = GMPLib/libgmp.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,7 +70,6 @@
 		AB342C291B0DD0DF00BB8D19 = {
 			isa = PBXGroup;
 			children = (
-				AB6C4CC21C0B8CB700CC2D74 /* gmp.h */,
 				AB7A48E01B0FDE700065C0D5 /* libgmp.a */,
 				AB342C4F1B0DD43300BB8D19 /* SwiftGMP.swift */,
 				AB342C351B0DD0DF00BB8D19 /* SwiftGMP */,
