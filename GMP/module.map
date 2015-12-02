@@ -1,5 +1,5 @@
 module GMP [system] {
-    header "/usr/local/include/gmp.h"
+    header "../GMPLib/gmp.h"
     link "GMP"
     export *
 }
