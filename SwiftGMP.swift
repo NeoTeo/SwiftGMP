@@ -53,6 +53,12 @@ extension IntBig {
             __gmpz_import(&i, size_t(buffer.count), 1, 1, 1, 0, &b)
         }
     }
+    
+    public init(_ string: String) {
+        self.init()
+        __gmpz_set_str(&i,(string as NSString).UTF8String, 10)
+        
+    }
 }
 
 func _Int_finalize(inout z: IntBig) {
