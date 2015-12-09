@@ -6,7 +6,8 @@
 //  Copyright (c) 2015 Teo. All rights reserved.
 //
 
-import Cocoa
+//import Cocoa
+
 import XCTest
 import SwiftGMP
 

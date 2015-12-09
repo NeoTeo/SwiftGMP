@@ -46,7 +46,7 @@ extension IntBig {
         
     }
 
-    public init(_ buffer: [uint8]) {
+    public init(_ buffer: [UInt8]) {
         self.init(0)
         var b = buffer
         if buffer.count != 0 {
@@ -197,10 +197,10 @@ public func cmp(number: IntBig, _ y: IntBig) -> Int {
     return r
 }
 
-public func bytes(number: IntBig) -> [uint8] {
+public func bytes(number: IntBig) -> [UInt8] {
     var num = number//self
     let size = 1 + ((bitLen(number) + 7) / 8)
-    var b = [uint8](count: size, repeatedValue: uint8(0))
+    var b = [UInt8](count: size, repeatedValue: UInt8(0))
     var n = size_t(b.count)
     __gmpz_export(&b, &n, 1, 1, 1, 0, &num.i)
     
