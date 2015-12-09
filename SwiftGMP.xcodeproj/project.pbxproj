@@ -348,7 +348,7 @@
 				LD_RUNPATH_SEARCH_PATHS = " $(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/GMPLib",
+					"$(PROJECT_DIR)/GMPLib/libgmposx",
 				);
 				MACH_O_TYPE = mh_dylib;
 				OTHER_LDFLAGS = "";
@@ -375,7 +375,7 @@
 				LD_RUNPATH_SEARCH_PATHS = " $(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/GMPLib",
+					"$(PROJECT_DIR)/GMPLib/libgmposx",
 				);
 				MACH_O_TYPE = mh_dylib;
 				OTHER_LDFLAGS = "";
@@ -404,7 +404,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(SRCROOT)/GMPLib $(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/GMPLib",
+					"$(SRCROOT)/GMPLib/libgmposx",
 				);
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				OTHER_LDFLAGS = "";
@@ -428,7 +428,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(SRCROOT)/GMPLib $(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/GMPLib",
+					"$(SRCROOT)/GMPLib/libgmposx",
 				);
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				OTHER_LDFLAGS = "";
