@@ -10,6 +10,7 @@
 		AB342C3F1B0DD0DF00BB8D19 /* SwiftGMP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB342C331B0DD0DF00BB8D19 /* SwiftGMP.framework */; };
 		AB342C461B0DD0DF00BB8D19 /* SwiftGMPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB342C451B0DD0DF00BB8D19 /* SwiftGMPTests.swift */; };
 		AB342C501B0DD43300BB8D19 /* SwiftGMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB342C4F1B0DD43300BB8D19 /* SwiftGMP.swift */; };
+		ABDB8DD31C1998AC0008F212 /* GMPLib in CopyFiles */ = {isa = PBXBuildFile; fileRef = ABDB8DD21C1998AC0008F212 /* GMPLib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +33,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ABDB8DD11C19988A0008F212 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				ABDB8DD31C1998AC0008F212 /* GMPLib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +52,7 @@
 		AB342C441B0DD0DF00BB8D19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB342C451B0DD0DF00BB8D19 /* SwiftGMPTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGMPTests.swift; sourceTree = "<group>"; };
 		AB342C4F1B0DD43300BB8D19 /* SwiftGMP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGMP.swift; sourceTree = "<group>"; };
+		ABDB8DD21C1998AC0008F212 /* GMPLib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = GMPLib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +77,7 @@
 		AB342C291B0DD0DF00BB8D19 = {
 			isa = PBXGroup;
 			children = (
+				ABDB8DD21C1998AC0008F212 /* GMPLib */,
 				AB342C4F1B0DD43300BB8D19 /* SwiftGMP.swift */,
 				AB342C351B0DD0DF00BB8D19 /* SwiftGMP */,
 				AB342C421B0DD0DF00BB8D19 /* SwiftGMPTests */,
@@ -153,6 +166,7 @@
 				AB342C3A1B0DD0DF00BB8D19 /* Sources */,
 				AB342C3B1B0DD0DF00BB8D19 /* Frameworks */,
 				AB342C3C1B0DD0DF00BB8D19 /* Resources */,
+				ABDB8DD11C19988A0008F212 /* CopyFiles */,
 			);
 			buildRules = (
 			);
