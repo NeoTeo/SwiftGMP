@@ -59,6 +59,14 @@ public func sub(_ a: DoubleBig, _ b: DoubleBig) -> DoubleBig {
     return c
 }
 
+public func mul(_ x: DoubleBig, _ y: DoubleBig) -> DoubleBig {
+    var a = x
+    var b = y
+    var c = DoubleBig() //self
+    __gmpf_mul(&c.d, &a.d, &b.d)
+    return c
+}
+
 // Cmp compares x and y and returns:
 //
 //   -1 if x <  y

@@ -48,6 +48,9 @@ class SwiftGMPTests: XCTestCase {
         
         let f = SwiftGMP.sub(c, d)
         print("f (c-d): \(SwiftGMP.string(f))")
+        
+        let g = SwiftGMP.mul(c, d)
+        print("g (c*d): \(SwiftGMP.string(g))")
     }
     
     func testInt() {
