@@ -26,9 +26,11 @@ class SwiftGMPTests: XCTestCase {
     func testDouble() {
         let a = DoubleBig("12334525234523452354.134534534")
         let b = DoubleBig(12341.3233)
+        let bb = DoubleBig(100.00)
         
         print("a: \(SwiftGMP.string(a))")
         print("b: \(SwiftGMP.string(b))")
+        print("bb: \(SwiftGMP.string(bb))")
         
         let c = DoubleBig(10.5)
         let d = DoubleBig(2.1)
@@ -70,7 +72,7 @@ class SwiftGMPTests: XCTestCase {
         XCTAssert(n == 42, "Pass")
     }
     
-    func testExample() {
+    func testAll() {
         // This is an example of a functional test case.
         testInt()
         

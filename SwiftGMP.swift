@@ -72,11 +72,19 @@ public func cmp(_ number: DoubleBig, _ y: DoubleBig) -> Int {
 
 func inBase(_ number: DoubleBig, _ base: Int) -> String {
     var ti = number.d
-    var ex : Int = Int(mp_exp_t()) as Int
+    var ex : Int = Int(mp_exp_t()) as Int // this is the deimal place
     let p = __gmpf_get_str(nil, &ex, CInt(base), 0, &ti)
     var s = String(cString: p!)
-    let si = s.index(s.startIndex, offsetBy: ex)
-    s.insert(".", at: si)
+    if(ex < s.characters.count) {
+        // add the decimal character to the floating point
+        let si = s.index(s.startIndex, offsetBy: ex)
+        s.insert(".", at: si)
+    } else {
+        // add padding 
+        for _ in 0..<(ex - s.characters.count) {
+            s.append("0")
+        }
+    }
     return s
 }
 
