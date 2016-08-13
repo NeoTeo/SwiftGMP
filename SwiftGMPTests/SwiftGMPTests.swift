@@ -27,10 +27,14 @@ class SwiftGMPTests: XCTestCase {
         let a = DoubleBig("12334525234523452354.134534534")
         let b = DoubleBig(12341.3233)
         let bb = DoubleBig(100.00)
+        let bbb = DoubleBig(-10.00)
+        let bbbb = DoubleBig(-1.002)
         
         print("a: \(SwiftGMP.string(a))")
         print("b: \(SwiftGMP.string(b))")
         print("bb: \(SwiftGMP.string(bb))")
+        print("bbb: \(SwiftGMP.string(bbb))")
+        print("bbbb: \(SwiftGMP.string(bbbb))")
         
         let c = DoubleBig(10.5)
         let d = DoubleBig(2.1)

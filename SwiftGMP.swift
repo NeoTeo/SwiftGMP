@@ -83,16 +83,22 @@ func inBase(_ number: DoubleBig, _ base: Int) -> String {
     var ex : Int = Int(mp_exp_t()) as Int // this is the deimal place
     let p = __gmpf_get_str(nil, &ex, CInt(base), 0, &ti)
     var s = String(cString: p!)
-    if(ex < s.characters.count) {
+    
+    let isNegative = s.characters.first == "-" ? 1 : 0;
+
+    //print("ex:" + String(ex) + " count: " + String(s.characters.count) + " isNegative: " + String(isNegative))
+    
+    if(ex < s.characters.count - isNegative) {
         // add the decimal character to the floating point
-        let si = s.index(s.startIndex, offsetBy: ex)
+        let si = s.index(s.startIndex, offsetBy: ex + isNegative)
         s.insert(".", at: si)
     } else {
-        // add padding 
-        for _ in 0..<(ex - s.characters.count) {
+        // add padding
+        for _ in 0..<(ex - s.characters.count + isNegative) {
             s.append("0")
         }
     }
+    
     return s
 }
 
