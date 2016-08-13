@@ -23,11 +23,30 @@ class SwiftGMPTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        let b = IntBig(246375425603637729)//.newIntBig(58)
+    func testDouble() {
+        let a = DoubleBig("12334525234523452354.134534534")
+        let b = DoubleBig(12341.3233)
+        
+        print("a: \(SwiftGMP.string(a))")
+        print("b: \(SwiftGMP.string(b))")
+        
+        let c = DoubleBig(10.5)
+        let d = DoubleBig(2.1)
+        
+        print("c: \(SwiftGMP.string(c))")
+        print("d: \(SwiftGMP.string(d))")
+        
+        let e = SwiftGMP.add(c, d)
+        print("e (c+d): \(SwiftGMP.string(e))")
+        
+        let f = SwiftGMP.sub(c, d)
+        print("f (c-d): \(SwiftGMP.string(f))")
+    }
+    
+    func testInt() {
+        let b = IntBig("246375425603637729")//.newIntBig(58)
         let c = IntBig(58)
-print("b: \(SwiftGMP.string(b))")
+        print("b: \(SwiftGMP.string(b))")
         
         XCTAssert(SwiftGMP.cmp(b,c) != 0, "compare error")
         
@@ -46,9 +65,16 @@ print("b: \(SwiftGMP.string(b))")
         XCTAssert(n == 42, "Pass")
     }
     
+    func testExample() {
+        // This is an example of a functional test case.
+        testInt()
+        
+        testDouble()
+    }
+    
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock() {
+        self.measure() {
             // Put the code you want to measure the time of here.
         }
     }
