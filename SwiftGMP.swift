@@ -41,6 +41,7 @@ extension DoubleBig {
     public mutating func finalize() {
         if(self.inited) {
             __gmpf_clear(&d)
+            self.inited = false
         }
     }
     
