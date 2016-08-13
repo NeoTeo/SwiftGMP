@@ -43,6 +43,12 @@ extension DoubleBig {
             __gmpf_clear(&d)
         }
     }
+    
+    // Return non-zero if an integer.
+    public func isInteger() -> Int32 {
+        var x = d
+        return __gmpf_integer_p(&x)
+    }
 }
 
 public func add(_ a : DoubleBig, _ b : DoubleBig) -> DoubleBig {
@@ -73,6 +79,20 @@ public func div(_ x: DoubleBig, _ y: DoubleBig) -> DoubleBig {
     var c = DoubleBig() //self
     __gmpf_div(&c.d, &a.d, &b.d)
     return c
+}
+
+public func floor(_ x: DoubleBig) -> DoubleBig {
+    var a = x
+    var b = DoubleBig()
+    __gmpf_floor(&b.d, &a.d)
+    return b
+}
+
+public func ceil(_ x: DoubleBig) -> DoubleBig {
+    var a = x
+    var b = DoubleBig()
+    __gmpf_ceil(&b.d, &a.d)
+    return b
 }
 
 // Cmp compares x and y and returns:
