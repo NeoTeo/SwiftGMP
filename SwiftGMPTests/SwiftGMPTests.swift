@@ -36,6 +36,11 @@ class SwiftGMPTests: XCTestCase {
         print("c: \(SwiftGMP.string(c))")
         print("d: \(SwiftGMP.string(d))")
         
+        let r = SwiftGMP.cmp(c, d)
+        print("r: " + String(r))
+        XCTAssert(r > 0, " c is greater than d")
+        
+        
         let e = SwiftGMP.add(c, d)
         print("e (c+d): \(SwiftGMP.string(e))")
         

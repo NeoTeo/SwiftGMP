@@ -59,6 +59,17 @@ public func sub(_ a: DoubleBig, _ b: DoubleBig) -> DoubleBig {
     return c
 }
 
+// Cmp compares x and y and returns:
+//
+//   -1 if x <  y
+//    0 if x == y
+//   +1 if x >  y
+public func cmp(_ number: DoubleBig, _ y: DoubleBig) -> Int {
+    var xl = number //self
+    var yl = y
+    return Int(__gmpf_cmp(&xl.d, &yl.d))
+}
+
 func inBase(_ number: DoubleBig, _ base: Int) -> String {
     var ti = number.d
     var ex : Int = Int(mp_exp_t()) as Int
