@@ -24,48 +24,50 @@ class SwiftGMPTests: XCTestCase {
     }
     
     func testDouble() {
-        let a = DoubleBig("12334525234523452354.134534534")
-        let b = DoubleBig(12341.8233)
-        let c = DoubleBig(100.00)
-        let d = DoubleBig(-10.00)
-        let e = DoubleBig(-1.002)
+        let a = SwiftGMP.GMPDouble("12334525234523452354.134534534")
+        let b = SwiftGMP.GMPDouble(12341.8233)
+        let c = SwiftGMP.GMPDouble(100.00)
+        let d = SwiftGMP.GMPDouble(-10.00)
+        let e = SwiftGMP.GMPDouble(-1.002)
         
-        print("a: \(SwiftGMP.string(a))")
-        print("b: \(SwiftGMP.string(b))")
-        print("c: \(SwiftGMP.string(c))")
-        print("d: \(SwiftGMP.string(d))")
-        print("e: \(SwiftGMP.string(e))")
+        print("a: \(SwiftGMP.GMPDouble.string(a))")
+        print("b: \(SwiftGMP.GMPDouble.string(b))")
+        print("c: \(SwiftGMP.GMPDouble.string(c))")
+        print("d: \(SwiftGMP.GMPDouble.string(d))")
+        print("e: \(SwiftGMP.GMPDouble.string(e))")
         
         XCTAssert(c.isInteger() != 0, "c is an integer")
         XCTAssert(d.isInteger() != 0, "d is an integer")
         
-        let f = DoubleBig(10.6)
-        let g = DoubleBig(2.1)
+        let f = SwiftGMP.GMPDouble(10.6)
+        let g = SwiftGMP.GMPDouble(2.1)
         
-        print("f: \(SwiftGMP.string(f))")
-        print("g: \(SwiftGMP.string(g))")
+        print("f: \(SwiftGMP.GMPDouble.string(f))")
+        print("g: \(SwiftGMP.GMPDouble.string(g))")
         
-        let h = SwiftGMP.cmp(f, g)
-        print("h: " + String(h))
+        print("f > g: " + String(f>g))
+        
+        let h = SwiftGMP.GMPDouble.cmp(f, g)
+        print("h: " + String(h) + " " + String(f==g))
         XCTAssert(h > 0, " c is greater than d")
         
-        let i = SwiftGMP.add(f, g)
-        print("i (f+g): \(SwiftGMP.string(i))")
+        let i = SwiftGMP.GMPDouble.add(f, g)
+        print("i (f+g): \(SwiftGMP.GMPDouble.string(i)) " + SwiftGMP.GMPDouble.string(f+g))
         
-        let j = SwiftGMP.sub(f, g)
-        print("j (f+g): \(SwiftGMP.string(j))")
+        let j = SwiftGMP.GMPDouble.sub(f, g)
+        print("j (f+g): \(SwiftGMP.GMPDouble.string(j)) " + SwiftGMP.GMPDouble.string(f-g))
         
-        let k = SwiftGMP.mul(f, g)
-        print("k (f*g): \(SwiftGMP.string(k))")
+        let k = SwiftGMP.GMPDouble.mul(f, g)
+        print("k (f*g): \(SwiftGMP.GMPDouble.string(k)) " + SwiftGMP.GMPDouble.string(f*g))
         
-        let l = SwiftGMP.div(f, g)
-        print("l (f/g): \(SwiftGMP.string(l))")
+        let l = SwiftGMP.GMPDouble.div(f, g)
+        print("l (f/g): \(SwiftGMP.GMPDouble.string(l)) " + SwiftGMP.GMPDouble.string(f/g))
         
-        let m = SwiftGMP.floor(f)
-        print("m (floor(f)): \(SwiftGMP.string(m))")
+        let m = SwiftGMP.GMPDouble.floor(f)
+        print("m (floor(f)): \(SwiftGMP.GMPDouble.string(m))")
         
-        let n = SwiftGMP.ceil(f)
-        print("n (ceil(f)): \(SwiftGMP.string(n))")
+        let n = SwiftGMP.GMPDouble.ceil(f)
+        print("n (ceil(f)): \(SwiftGMP.GMPDouble.string(n))")
     }
     
     func testInt() {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		110067D21D70B9C700FE25D6 /* GMPDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110067D11D70B9C700FE25D6 /* GMPDouble.swift */; };
 		AB342C3F1B0DD0DF00BB8D19 /* SwiftGMP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB342C331B0DD0DF00BB8D19 /* SwiftGMP.framework */; };
 		AB342C461B0DD0DF00BB8D19 /* SwiftGMPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB342C451B0DD0DF00BB8D19 /* SwiftGMPTests.swift */; };
 		AB342C501B0DD43300BB8D19 /* SwiftGMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB342C4F1B0DD43300BB8D19 /* SwiftGMP.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		110067D11D70B9C700FE25D6 /* GMPDouble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GMPDouble.swift; sourceTree = "<group>"; };
 		AB342C331B0DD0DF00BB8D19 /* SwiftGMP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftGMP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB342C371B0DD0DF00BB8D19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB342C3E1B0DD0DF00BB8D19 /* SwiftGMPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftGMPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +72,7 @@
 			children = (
 				ABDB8DD21C1998AC0008F212 /* GMPLib */,
 				AB342C4F1B0DD43300BB8D19 /* SwiftGMP.swift */,
+				110067D11D70B9C700FE25D6 /* GMPDouble.swift */,
 				AB342C351B0DD0DF00BB8D19 /* SwiftGMP */,
 				AB342C421B0DD0DF00BB8D19 /* SwiftGMPTests */,
 				AB342C341B0DD0DF00BB8D19 /* Products */,
@@ -180,7 +183,10 @@
 				TargetAttributes = {
 					AB342C321B0DD0DF00BB8D19 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = C6L3992RFB;
+						DevelopmentTeamName = "Zac Gorak";
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 					};
 					AB342C3D1B0DD0DF00BB8D19 = {
 						CreatedOnToolsVersion = 6.4;
@@ -229,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB342C501B0DD43300BB8D19 /* SwiftGMP.swift in Sources */,
+				110067D21D70B9C700FE25D6 /* GMPDouble.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,7 +365,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -378,6 +385,7 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "Terminal-Glow.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -388,7 +396,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -408,6 +416,7 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "Terminal-Glow.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
