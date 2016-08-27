@@ -70,31 +70,45 @@ class SwiftGMPTests: XCTestCase {
         print("n (ceil(f)): \(SwiftGMP.GMPDouble.string(n))")
     }
     
-    func testInt() {
-        let b = IntBig("246375425603637729")//.newIntBig(58)
-        let c = IntBig(58)
-        print("b: \(SwiftGMP.string(b))")
-        
-        XCTAssert(SwiftGMP.cmp(b,c) != 0, "compare error")
-        
-        print("Bytes: \(SwiftGMP.bytes(b))")
-        
-        var d = SwiftGMP.mul(b, c)
-        print("mul: \(SwiftGMP.string(d))")
-        
-        d = SwiftGMP.add(b, c)
-        print("add: \(SwiftGMP.string(d))")
-        var e = IntBig(69)
-        e = IntBig(42)
-        print("e = \(SwiftGMP.string(e))")
-        let n = SwiftGMP.getInt64(e)
-        print("n = \(n!)")
-        XCTAssert(n == 42, "Pass")
+//    func testInt() {
+//        let b = IntBig("246375425603637729")//.newIntBig(58)
+//        let c = IntBig(58)
+//        print("b: \(SwiftGMP.string(b))")
+//        
+//        XCTAssert(SwiftGMP.cmp(b,c) != 0, "compare error")
+//        
+//        print("Bytes: \(SwiftGMP.bytes(b))")
+//        
+//        var d = SwiftGMP.mul(b, c)
+//        print("mul: \(SwiftGMP.string(d))")
+//        
+//        d = SwiftGMP.add(b, c)
+//        print("add: \(SwiftGMP.string(d))")
+//        var e = IntBig(69)
+//        e = IntBig(42)
+//        print("e = \(SwiftGMP.string(e))")
+//        let n = SwiftGMP.getInt64(e)
+//        print("n = \(n!)")
+//        XCTAssert(n == 42, "Pass")
+//        
+//    }
+    
+    func testIntegers() {
+        let divResult = "5866081561991374"
+        let b = GMPInteger("246375425603637729")
+        let c = GMPInteger(42)
+        var result = GMPInteger.div(b, c)
+        XCTAssert(result.description == divResult)
+        print("division result: \(result.description)")
+        result = b / c
+        XCTAssert(result.description == divResult)
+        print("division (operator) result: \(result.description)")
+
     }
     
     func testAll() {
         // This is an example of a functional test case.
-        testInt()
+        testIntegers()
         
         testDouble()
     }
