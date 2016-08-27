@@ -1,6 +1,6 @@
 # Swift wrapper for the GNU Multiple Precision Arithmetic Library.
 
-This project is a work in progress. Currently only integer functions are implmented as well as some floating-point functions. 
+This project is a work in progress. Currently integer and some floating-point functions are implemented.
 
 ## Install
 ### Requirements
@@ -12,7 +12,7 @@ Add the following to your Cartfile:
      github "NeoTeo/SwiftGMP"
 Then, in the root of your project, type: `carthage update`  
 
-You will then need to add frameworks to your own Xcode project:  
+##### You will then need to add frameworks to your own Xcode project:  
 1.  Select your target's Build Phases tab.  
 2.  Select the Link Binary With Libraries, click the + and then Add Other... buttons.  
 3.  Navigate to the Carthage/Build/Mac directory in your project root and select the SwiftGMP.framework.  
