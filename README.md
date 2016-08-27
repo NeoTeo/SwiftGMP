@@ -1,9 +1,44 @@
-# Swift wrapper for the Gnu Multi Precision library.
+# Swift wrapper for the GNU Multiple Precision Arithmetic Library.
 
-(Very alpha) Work in progress.
-Currently this library only exists to provide the functions necessary for my github/NeoTeo/Base58.git library. 
-Once that is working I plan to add all remaining functionality.
+This project is a work in progress. Currently only integer functions are implmented as well as some floating-point functions. 
 
-# Requirements
+## Install
+### Requirements
+#### [GMP](//gmplib.org)
+Currently libgmp.a 6.0.0a is included. You can rebuild it using the [GMP iOS Builder](//github.com/NeoTeo/gmp-ios-builder). 
+#### Carthage
+Add the following to your Cartfile:
 
-Currently libgmp.a 6.0.0a is included.
+     github "NeoTeo/SwiftGMP"
+Then, in the root of your project, type: `carthage update`  
+
+You will then need to add frameworks to your own Xcode project:  
+1.  Select your target's Build Phases tab.  
+2.  Select the Link Binary With Libraries, click the + and then Add Other... buttons.  
+3.  Navigate to the Carthage/Build/Mac directory in your project root and select the SwiftGMP.framework.  
+In case of a code signing error, select the target's Build Settings tab make sure the "Code Signing Identity" is either a valid identity or "Don't Code Sign".
+
+For more information on how to install via Carthage see the [README](//github.com/Carthage/Carthage#adding-frameworks-to-an-application).
+#### Swift 2+ 
+For Swift 3 builds you may have to modify your xcode location. You can do this by running `sudo xcode-select --switch /Applications/Xcode-beta.app/Contents/Developer/` or setting it from Xcode -> Preferences -> Locations -> Commmand Line Tools
+
+## Usage
+
+A full set of examples can be found in our [test suite](//github.com/NeoTeo/SwiftGMP/tree/master/SwiftGMPTests).
+
+	import SwiftGMP
+	
+	let s2d = SwiftGMP.GMPDouble("12356789123456789.9876")
+	let d2d = SwiftGMP.GMPDouble(12345.678)
+	print(String(s2d + d2d))
+
+### Example projects
+*  [SwiftBase58](//github.com/NeoTeo/SwiftBase58)
+
+## Contribute
+
+Contributions are welcome! Check out [the issues](//github.com/NeoTeo/SwiftGMP/issues).
+
+## License
+
+GMP follows the  [GNU LGPL v3](//www.gnu.org/licenses/lgpl.html) and [GNU GPL v2](//www.gnu.org/licenses/gpl-2.0.html) licenses. This project has an additional [MIT](//opensource.org/licenses/MIT) license.
