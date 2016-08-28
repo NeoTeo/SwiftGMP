@@ -127,6 +127,20 @@ public class GMPDouble {
         __gmpf_div(&c.d, &a.d, &b.d)
         return c
     }
+    
+    public static func abs(_ x: GMPDouble) -> GMPDouble {
+        let a = x
+        let b = GMPDouble(precision : x.precision)
+        __gmpf_abs(&b.d, &a.d)
+        return b
+    }
+    
+    public static func sqrt(_ x: GMPDouble) -> GMPDouble {
+        let a = x
+        let b = GMPDouble(precision : x.precision)
+        __gmpf_sqrt(&b.d, &a.d)
+        return b
+    }
 
     public static func floor(_ x: GMPDouble) -> GMPDouble {
         let a = x
