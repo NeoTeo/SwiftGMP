@@ -188,7 +188,7 @@ public class GMPDouble {
         return Int(__gmpf_cmp(&xl.d, &yl.d))
     }
 
-    private static func strBase(_ number: GMPDouble, _ base: Int) -> (str : String, exp : Int) {
+    public static func strBase(_ number: GMPDouble, _ base: Int) -> (str : String, exp : Int) {
         var ti = number.d
         var ex : Int = Int(mp_exp_t()) as Int // this is the deimal place
         let p = __gmpf_get_str(nil, &ex, CInt(base), 0, &ti)
