@@ -63,7 +63,7 @@ public class GMPDouble {
         self.inited = true
     }
     
-    public convenience init(_ str : String) {
+    public convenience required init(_ str : String) {
         self.init(str, base : 10)
     }
     
@@ -225,6 +225,11 @@ public class GMPDouble {
     
 }
 
+// for init with string
+extension GMPDouble : LosslessStringConvertible { }
+// for description
+extension GMPDouble : CustomStringConvertible { }
+// for operators
 extension GMPDouble : Equatable, Comparable {
     public static func + (_ a : GMPDouble, _ b : GMPDouble) -> GMPDouble {
         return GMPDouble.add(a, b)
