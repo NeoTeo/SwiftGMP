@@ -10,7 +10,7 @@ import Foundation
 import GMP
 
 // Multiple-precision Floating-point
-public class GMPDouble : Equatable, Comparable {
+public class GMPDouble {
     private var d : mpf_t
     private var inited : Bool = false;
     
@@ -20,8 +20,14 @@ public class GMPDouble : Equatable, Comparable {
         inited = true
     }
     
-    public convenience init(_ x : Double) {
-        self.init()
+    public init(precision : Int) {
+        d = mpf_t()
+        __gmpf_init2(&d, mp_bitcnt_t(precision));
+        inited = true
+    }
+    
+    public convenience init(_ x : Double, precision : Int) {
+        self.init(precision : precision)
         let y = CDouble(x)
         if Double(y) == x {
             __gmpf_set_d(&d, y)
@@ -30,16 +36,59 @@ public class GMPDouble : Equatable, Comparable {
         }
     }
     
-    public convenience init(_ str : String) {
-        self.init();
+    public init(_ x : Double) {
+        //self.init(x, precision: GMPDouble.defaultPrecision)
+        let y = CDouble(x)
+        self.d = mpf_t()
+        if Double(y) == x {
+            __gmpf_init_set_d(&d, y)
+            self.inited = true
+        } else {
+            // something went wrong
+        }
+    }
+    
+    public convenience init(_ str : String, base : Int, precision : Int) {
+        self.init(precision : precision)
         __gmpf_set_str(&d, (str as NSString).utf8String, 10)
-        
+    }
+    
+    public convenience init(_ str : String, precision : Int) {
+        self.init(str, base: 10, precision: precision)
+    }
+    
+    public init(_ str : String, base : Int) {
+        self.d = mpf_t()
+        __gmpf_init_set_str(&d, (str as NSString).utf8String, CInt(base))
+        self.inited = true
+    }
+    
+    public convenience init(_ str : String) {
+        self.init(str, base : 10)
     }
     
     deinit {
         if(self.inited) {
             __gmpf_clear(&d)
             self.inited = false
+        }
+    }
+    
+    public static var defaultPrecision : Int {
+        get {
+            return Int(__gmpf_get_default_prec())
+        }
+        set (newDefaultPrec) {
+            __gmpf_set_default_prec(mp_bitcnt_t(newDefaultPrec))
+        }
+    }
+    
+    public var precision : Int {
+        get {
+           return Int(__gmpf_get_prec(&d))
+        }
+        set (newPrec) {
+            __gmpf_set_prec(&d, mp_bitcnt_t(newPrec))
         }
     }
     
@@ -51,14 +100,14 @@ public class GMPDouble : Equatable, Comparable {
 
     public static func add(_ a : GMPDouble, _ b : GMPDouble) -> GMPDouble {
         let x = a, y = b;
-        let c = GMPDouble()
+        let c = GMPDouble(precision : x.precision)
         __gmpf_add(&c.d, &x.d, &y.d)
         return c
     }
 
     public static func sub(_ a: GMPDouble, _ b: GMPDouble) -> GMPDouble {
         let x = a, y = b;
-        let c = GMPDouble() //self
+        let c = GMPDouble(precision : x.precision) //self
         __gmpf_sub(&c.d, &x.d, &y.d)
         return c
     }
@@ -66,7 +115,7 @@ public class GMPDouble : Equatable, Comparable {
     public static func mul(_ x: GMPDouble, _ y: GMPDouble) -> GMPDouble {
         let a = x
         let b = y
-        let c = GMPDouble() //self
+        let c = GMPDouble(precision : x.precision) //self
         __gmpf_mul(&c.d, &a.d, &b.d)
         return c
     }
@@ -74,22 +123,29 @@ public class GMPDouble : Equatable, Comparable {
     public static func div(_ x: GMPDouble, _ y: GMPDouble) -> GMPDouble {
         let a = x
         let b = y
-        let c = GMPDouble() //self
+        let c = GMPDouble(precision : x.precision) //self
         __gmpf_div(&c.d, &a.d, &b.d)
         return c
     }
 
     public static func floor(_ x: GMPDouble) -> GMPDouble {
         let a = x
-        let b = GMPDouble()
+        let b = GMPDouble(precision : x.precision)
         __gmpf_floor(&b.d, &a.d)
         return b
     }
 
     public static func ceil(_ x: GMPDouble) -> GMPDouble {
         let a = x
-        let b = GMPDouble()
+        let b = GMPDouble(precision : x.precision)
         __gmpf_ceil(&b.d, &a.d)
+        return b
+    }
+    
+    public static func trun(_ x : GMPDouble) -> GMPDouble {
+        let a = x
+        let b = GMPDouble(precision : x.precision)
+        __gmpf_trunc(&b.d, &a.d)
         return b
     }
 
@@ -104,11 +160,18 @@ public class GMPDouble : Equatable, Comparable {
         return Int(__gmpf_cmp(&xl.d, &yl.d))
     }
 
-    private static func inBase(_ number: GMPDouble, _ base: Int) -> String {
+    private static func strBase(_ number: GMPDouble, _ base: Int) -> (str : String, exp : Int) {
         var ti = number.d
         var ex : Int = Int(mp_exp_t()) as Int // this is the deimal place
         let p = __gmpf_get_str(nil, &ex, CInt(base), 0, &ti)
-        var s = String(cString: p!)
+        
+        return (str : String(cString: p!), exp : ex);
+    }
+    
+    public static func string(_ number: GMPDouble) -> String {
+        let str = self.strBase(number, 10)
+        var s = str.str
+        let ex = str.exp
         
         let isNegative = s.characters.first == "-" ? 1 : 0;
         
@@ -127,10 +190,6 @@ public class GMPDouble : Equatable, Comparable {
         
         return s
     }
-
-    public static func string(_ number: GMPDouble) -> String {
-        return self.inBase(number, 10)
-    }
     
     public var description : String {
         return GMPDouble.string(self)
@@ -138,21 +197,64 @@ public class GMPDouble : Equatable, Comparable {
     
 }
 
-public func + (_ a : GMPDouble, _ b : GMPDouble) -> GMPDouble {
-    return GMPDouble.add(a, b)
-}
-public func - (_ a : GMPDouble, _ b : GMPDouble) -> GMPDouble {
-    return GMPDouble.sub(a, b)
-}
-public func * (_ a : GMPDouble, _ b : GMPDouble) -> GMPDouble {
-    return GMPDouble.mul(a, b)
-}
-public func / (_ a : GMPDouble, _ b : GMPDouble) -> GMPDouble {
-    return GMPDouble.div(a, b)
-}
-public func == (_ a : GMPDouble, _ b : GMPDouble) -> Bool {
-    return GMPDouble.cmp(a, b) == 0 ? true : false
-}
-public func < (_ a : GMPDouble, _ b : GMPDouble) -> Bool {
-    return GMPDouble.cmp(a, b) < 0 ? true : false
+extension GMPDouble : Equatable, Comparable {
+    public static func + (_ a : GMPDouble, _ b : GMPDouble) -> GMPDouble {
+        return GMPDouble.add(a, b)
+    }
+    public static func + (_ a : GMPDouble, _ b : Double) -> GMPDouble {
+        return GMPDouble.add(a, GMPDouble(b))
+    }
+    public static func + (_ a : Double, _ b : GMPDouble) -> GMPDouble {
+        return GMPDouble.add(GMPDouble(a), b)
+    }
+    
+    public static func - (_ a : GMPDouble, _ b : GMPDouble) -> GMPDouble {
+        return GMPDouble.sub(a, b)
+    }
+    public static func - (_ a : GMPDouble, _ b : Double) -> GMPDouble {
+        return GMPDouble.sub(a, GMPDouble(b))
+    }
+    public static func - (_ a : Double, _ b : GMPDouble) -> GMPDouble {
+        return GMPDouble.sub(GMPDouble(a), b)
+    }
+    
+    public static func * (_ a : GMPDouble, _ b : GMPDouble) -> GMPDouble {
+        return GMPDouble.mul(a, b)
+    }
+    public static func * (_ a : GMPDouble, _ b : Double) -> GMPDouble {
+        return GMPDouble.mul(a, GMPDouble(b))
+    }
+    public static func * (_ a : Double, _ b : GMPDouble) -> GMPDouble {
+        return GMPDouble.mul(GMPDouble(a), b)
+    }
+    
+    public static func / (_ a : GMPDouble, _ b : GMPDouble) -> GMPDouble {
+        return GMPDouble.div(a, b)
+    }
+    public static func / (_ a : GMPDouble, _ b : Double) -> GMPDouble {
+        return GMPDouble.div(a, GMPDouble(b))
+    }
+    public static func / (_ a : Double, _ b : GMPDouble) -> GMPDouble {
+        return GMPDouble.div(GMPDouble(a), b)
+    }
+    
+    public static func == (_ a : GMPDouble, _ b : GMPDouble) -> Bool {
+        return GMPDouble.cmp(a, b) == 0 ? true : false
+    }
+    public static func == (_ a : GMPDouble, _ b : Double) -> Bool {
+        return GMPDouble.cmp(a, GMPDouble(b)) == 0 ? true : false
+    }
+    public static func == (_ a : Double, _ b : GMPDouble) -> Bool {
+        return GMPDouble.cmp(GMPDouble(a), b) == 0 ? true : false
+    }
+    
+    public static func < (_ a : GMPDouble, _ b : GMPDouble) -> Bool {
+        return GMPDouble.cmp(a, b) < 0 ? true : false
+    }
+    public static func < (_ a : GMPDouble, _ b : Double) -> Bool {
+        return GMPDouble.cmp(a, GMPDouble(b)) < 0 ? true : false
+    }
+    public static func < (_ a : Double, _ b : GMPDouble) -> Bool {
+        return GMPDouble.cmp(GMPDouble(a), b) < 0 ? true : false
+    }
 }

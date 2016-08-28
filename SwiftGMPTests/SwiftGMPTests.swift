@@ -24,12 +24,22 @@ class SwiftGMPTests: XCTestCase {
     }
     
     func testDouble() {
+        print("Default precision: " + String(SwiftGMP.GMPDouble.defaultPrecision))
+        let dmax64 = SwiftGMP.GMPDouble(DBL_MAX)
+        print("DBL_MAX @ default prec: " + dmax64.description)
+        SwiftGMP.GMPDouble.defaultPrecision = 128
+        let dmax128 = SwiftGMP.GMPDouble(DBL_MAX)
+        print("DBL_MAX @ 128 prec: " + dmax128.description)
+        
+        let twoDmax = dmax64 + dmax128
+        print("DBL_MAX * 2 @ 128 prec" + twoDmax.description)
+        
         let a = SwiftGMP.GMPDouble("12334525234523452354.134534534")
         let b = SwiftGMP.GMPDouble(12341.8233)
         let c = SwiftGMP.GMPDouble(100.00)
         let d = SwiftGMP.GMPDouble(-10.00)
         let e = SwiftGMP.GMPDouble(-1.002)
-        
+        print((d + 1.0).description)
         print("a: \(SwiftGMP.GMPDouble.string(a))")
         print("b: \(SwiftGMP.GMPDouble.string(b))")
         print("c: \(SwiftGMP.GMPDouble.string(c))")
@@ -46,6 +56,11 @@ class SwiftGMPTests: XCTestCase {
         print("g: \(SwiftGMP.GMPDouble.string(g))")
         
         print("f > g: " + String(f>g))
+        XCTAssert(f > g, "f is greater than g")
+        
+        XCTAssert(g < f, "g is less than f")
+        
+        XCTAssert(SwiftGMP.GMPDouble(1.0) == SwiftGMP.GMPDouble(1.0), "1.0 equals 1.0")
         
         let h = SwiftGMP.GMPDouble.cmp(f, g)
         print("h: " + String(h) + " " + String(f==g))
@@ -65,9 +80,11 @@ class SwiftGMPTests: XCTestCase {
         
         let m = SwiftGMP.GMPDouble.floor(f)
         print("m (floor(f)): \(SwiftGMP.GMPDouble.string(m))")
+        XCTAssert(SwiftGMP.GMPDouble.floor(f) == SwiftGMP.GMPDouble(10), "floor of f is 10")
         
         let n = SwiftGMP.GMPDouble.ceil(f)
         print("n (ceil(f)): \(SwiftGMP.GMPDouble.string(n))")
+        XCTAssert(SwiftGMP.GMPDouble.ceil(f) == SwiftGMP.GMPDouble(11), "ceil of f is 11")
     }
     
 //    func testInt() {
