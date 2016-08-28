@@ -276,6 +276,17 @@ extension GMPDouble : Equatable, Comparable {
         return GMPDouble.cmp(GMPDouble(a), b) == 0 ? true : false
     }
     
+    public static func != (_ a : GMPDouble, _ b : GMPDouble) -> Bool {
+        return GMPDouble.cmp(a, b) != 0 ? true : false
+    }
+    public static func != (_ a : GMPDouble, _ b : Double) -> Bool {
+        return GMPDouble.cmp(a, GMPDouble(b)) != 0 ? true : false
+    }
+    public static func != (_ a : Double, _ b : GMPDouble) -> Bool {
+        return GMPDouble.cmp(GMPDouble(a), b) != 0 ? true : false
+    }
+    
+    
     public static func < (_ a : GMPDouble, _ b : GMPDouble) -> Bool {
         return GMPDouble.cmp(a, b) < 0 ? true : false
     }
@@ -284,5 +295,35 @@ extension GMPDouble : Equatable, Comparable {
     }
     public static func < (_ a : Double, _ b : GMPDouble) -> Bool {
         return GMPDouble.cmp(GMPDouble(a), b) < 0 ? true : false
+    }
+    
+    public static func > (_ a : GMPDouble, _ b : GMPDouble) -> Bool {
+        return GMPDouble.cmp(a, b) > 0 ? true : false
+    }
+    public static func > (_ a : GMPDouble, _ b : Double) -> Bool {
+        return GMPDouble.cmp(a, GMPDouble(b)) > 0 ? true : false
+    }
+    public static func > (_ a : Double, _ b : GMPDouble) -> Bool {
+        return GMPDouble.cmp(GMPDouble(a), b) > 0 ? true : false
+    }
+    
+    public static func <= (_ a : GMPDouble, _ b : GMPDouble) -> Bool {
+        return GMPDouble.cmp(a, b) <= 0 ? true : false
+    }
+    public static func <= (_ a : GMPDouble, _ b : Double) -> Bool {
+        return GMPDouble.cmp(a, GMPDouble(b)) <= 0 ? true : false
+    }
+    public static func <= (_ a : Double, _ b : GMPDouble) -> Bool {
+        return GMPDouble.cmp(GMPDouble(a), b) <= 0 ? true : false
+    }
+    
+    public static func >= (_ a : GMPDouble, _ b : GMPDouble) -> Bool {
+        return GMPDouble.cmp(a, b) >= 0 ? true : false
+    }
+    public static func >= (_ a : GMPDouble, _ b : Double) -> Bool {
+        return GMPDouble.cmp(a, GMPDouble(b)) >= 0 ? true : false
+    }
+    public static func >= (_ a : Double, _ b : GMPDouble) -> Bool {
+        return GMPDouble.cmp(GMPDouble(a), b) >= 0 ? true : false
     }
 }
