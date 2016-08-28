@@ -24,6 +24,8 @@ class SwiftGMPTests: XCTestCase {
     }
     
     func testDoubleOperators() {
+        //The operator functions use the cmp function
+        
         let two = SwiftGMP.GMPDouble(2.0)
         let eight = SwiftGMP.GMPDouble(8.0)
         let ten = SwiftGMP.GMPDouble(10.0)
@@ -83,16 +85,7 @@ class SwiftGMPTests: XCTestCase {
         print("f: \(SwiftGMP.GMPDouble.string(f))")
         print("g: \(SwiftGMP.GMPDouble.string(g))")
         
-        print("f > g: " + String(f>g))
-        XCTAssert(f > g, "f is greater than g")
-        
-        XCTAssert(g < f, "g is less than f")
-        
-        XCTAssert(SwiftGMP.GMPDouble(1.0) == SwiftGMP.GMPDouble(1.0), "1.0 equals 1.0")
-        
-        let h = SwiftGMP.GMPDouble.cmp(f, g)
-        print("h: " + String(h) + " " + String(f==g))
-        XCTAssert(h > 0, " c is greater than d")
+        testDoubleOperators()
         
         let i = SwiftGMP.GMPDouble.add(f, g)
         print("i (f+g): \(SwiftGMP.GMPDouble.string(i)) " + SwiftGMP.GMPDouble.string(f+g))
