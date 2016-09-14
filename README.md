@@ -19,8 +19,7 @@ Then, in the root of your project, type: `carthage update`
 In case of a code signing error, select the target's Build Settings tab make sure the "Code Signing Identity" is either a valid identity or "Don't Code Sign".
 
 For more information on how to install via Carthage see the [README](//github.com/Carthage/Carthage#adding-frameworks-to-an-application).
-#### Swift 2+ 
-For Swift 3 builds you may have to modify your xcode location. You can do this by running `sudo xcode-select --switch /Applications/Xcode-beta.app/Contents/Developer/` or setting it from Xcode -> Preferences -> Locations -> Commmand Line Tools
+#### Swift 3
 
 ## Usage
 
