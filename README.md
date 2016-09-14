@@ -20,6 +20,7 @@ In case of a code signing error, select the target's Build Settings tab make sur
 
 For more information on how to install via Carthage see the [README](//github.com/Carthage/Carthage#adding-frameworks-to-an-application).
 #### Swift 3
+This is part of Xcode 8.
 
 ## Usage
 
