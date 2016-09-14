@@ -83,7 +83,7 @@ extension GMPInteger {
     }
     
     // Int64
-    public func getInt64(_ number: GMPInteger) -> Int? {
+    public static func getInt64(_ number: GMPInteger) -> Int? {
         let oldGMPInteger = number
         
         if oldGMPInteger.inited == false { return nil }
