@@ -5,7 +5,7 @@ This project is a work in progress. Currently integer and some floating-point fu
 ## Install
 ### Requirements
 #### [GMP](//gmplib.org)
-Currently libgmp.a 6.0.0a is included. You can rebuild it using the [GMP iOS Builder](//github.com/NeoTeo/gmp-ios-builder). 
+Currently libgmp.a 6.1.1 is included. You can rebuild it using the [GMP iOS Builder](//github.com/NeoTeo/gmp-ios-builder). 
 #### Carthage
 Add the following to your Cartfile:
 
