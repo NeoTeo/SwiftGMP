@@ -9,7 +9,7 @@ Currently libgmp.a 6.1.1 is included. You can rebuild it using the [GMP iOS Buil
 #### Carthage
 Add the following to your Cartfile:
 
-     github "NeoTeo/SwiftGMP"
+     github "NeoTeo/SwiftGMP" "master"
 Then, in the root of your project, type: `carthage update`  
 
 ##### You will then need to add frameworks to your own Xcode project:  
