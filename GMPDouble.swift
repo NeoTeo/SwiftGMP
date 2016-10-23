@@ -196,7 +196,7 @@ public class GMPDouble {
         if s.isEmpty {
             s = "0"
         }
-        return (str : s, exp : ex);
+        return (str : s, exp : ex <= 0 ? 0 : ex);
     }
     
     public static func string(_ number: GMPDouble) -> String {
