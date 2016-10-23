@@ -208,11 +208,11 @@ public class GMPDouble {
         
         //print("ex:" + String(ex) + " count: " + String(s.characters.count) + " isNegative: " + String(isNegative))
         
-        if(ex < s.characters.count - isNegative) {
+        if(ex != 0 && ex < s.characters.count - isNegative) {
             // add the decimal character to the floating point
             let si = s.index(s.startIndex, offsetBy: ex + isNegative)
             s.insert(".", at: si)
-        } else {
+        } else if (ex != 0) {
             // add padding
             for _ in 0..<(ex - s.characters.count + isNegative) {
                 s.append("0")
