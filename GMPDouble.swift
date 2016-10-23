@@ -192,7 +192,10 @@ public class GMPDouble {
         var ti = number.d
         var ex : Int = Int(mp_exp_t()) as Int // this is the deimal place
         let p = __gmpf_get_str(nil, &ex, CInt(base), 0, &ti)
-        
+        var s = String(cString: p!)
+        if s.isEmpty {
+            s = "0"
+        }
         return (str : String(cString: p!), exp : ex);
     }
     
