@@ -206,7 +206,7 @@ public class GMPDouble {
      *
      *   When `number` is zero, an empty string is produced and the exponent returned is 0.
      */
-    public static func strBase(_ number: GMPDouble, _ base: Int) -> (string : String?, exponent : Int) {
+    public static func strBase(_ number: GMPDouble, _ base: Int) -> (string : String, exponent : Int) {
         var ti = number.d
         var ex : Int = Int(mp_exp_t()) // this is the deimal place
         let p = __gmpf_get_str(nil, &ex, CInt(base), 0, &ti)
@@ -223,18 +223,18 @@ public class GMPDouble {
         var string = strBase.string
         let exponent = strBase.exponent
         
-        if string == nil || (string?.isEmpty)! {
+        if string.isEmpty {
             return Double(0).description
         }
         
-        let isNegative = string?.characters.first == "-" ? 1 : 0;
+        let isNegative = string.characters.first == "-" ? 1 : 0;
         
         //print("s: \(s) ex:" + String(ex) + " count: \(s?.characters.count) isNegative: " + String(isNegative))
         
-        if(exponent > 0 && exponent < (string?.characters.count)! - isNegative) {
+        if(exponent > 0 && exponent < string.characters.count - isNegative) {
             // add the decimal character to the floating point
-            let si = string?.index((string?.startIndex)!, offsetBy: exponent + isNegative)
-            string?.insert(".", at: si!)
+            let si = string.index(string.startIndex, offsetBy: exponent + isNegative)
+            string.insert(".", at: si)
         } else {
             // add necessary padding
             if exponent <= 0 {
@@ -244,22 +244,22 @@ public class GMPDouble {
                     news = news + "0"
                 }
                 if isNegative > 0 {
-                    string = "-" + news + (string?.substring(from: (string?.index((string?.startIndex)!, offsetBy: 1))!))!
+                    string = "-" + news + string.substring(from: (string.index(string.startIndex, offsetBy: 1)))
                 } else {
-                    string = news + string!
+                    string = news + string
                 }
                 
                 //s.insert(news, at: s.index(s.startIndex, offsetBy: isNegative))
             } else {
                 // the number does not have a decimal ie 1(00000)
-                for _ in 0..<(exponent - (string?.characters.count)! + isNegative) {
-                    string?.append("0")
+                for _ in 0..<(exponent - string.characters.count + isNegative) {
+                    string.append("0")
                 }
-                string? = string! + ".0"
+                string = string + ".0"
             }
         }
         
-        return string!
+        return string
     }
     
     public var description : String {

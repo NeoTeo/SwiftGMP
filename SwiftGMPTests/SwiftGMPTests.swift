@@ -63,7 +63,7 @@ class SwiftGMPTests: XCTestCase {
         
         let twoDmax = dmax64 + dmax128
         print("DBL_MAX * 2 @ 128 prec" + twoDmax.description)
-        
+    
         print("Test zero \(SwiftGMP.GMPDouble(-0))")
         XCTAssert(SwiftGMP.GMPDouble(0).description == Double(0).description, "zero should equal zero")
         
