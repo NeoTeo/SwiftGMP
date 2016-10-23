@@ -64,7 +64,10 @@ class SwiftGMPTests: XCTestCase {
         let twoDmax = dmax64 + dmax128
         print("DBL_MAX * 2 @ 128 prec" + twoDmax.description)
         
-        print("Test zero \(SwiftGMP.GMPDouble(0))")
+        print("Test zero \(SwiftGMP.GMPDouble(-0))")
+        print("Test small number \(SwiftGMP.GMPDouble(0.00001))")
+        print("Test small number \(SwiftGMP.GMPDouble(-0.00001))")
+        print("Test small number \(SwiftGMP.GMPDouble(-0.1))")
         let a = SwiftGMP.GMPDouble("12334525234523452354.134534534")
         let b = SwiftGMP.GMPDouble(12341.8233)
         let c = SwiftGMP.GMPDouble(100.00)

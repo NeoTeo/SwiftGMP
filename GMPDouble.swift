@@ -196,7 +196,7 @@ public class GMPDouble {
         if s.isEmpty {
             s = "0"
         }
-        return (str : s, exp : ex <= 0 ? 0 : ex);
+        return (str : s, exp : ex);
     }
     
     public static func string(_ number: GMPDouble) -> String {
@@ -208,14 +208,28 @@ public class GMPDouble {
         
         //print("ex:" + String(ex) + " count: " + String(s.characters.count) + " isNegative: " + String(isNegative))
         
-        if(ex != 0 && ex < s.characters.count - isNegative) {
+        if(ex > 0 && ex < s.characters.count - isNegative) {
             // add the decimal character to the floating point
             let si = s.index(s.startIndex, offsetBy: ex + isNegative)
             s.insert(".", at: si)
-        } else if (ex != 0) {
+        } else {
             // add padding
-            for _ in 0..<(ex - s.characters.count + isNegative) {
-                s.append("0")
+            if ex <= 0 {
+                var news = "0."
+                for _ in 0..<(-ex) {
+                    news = news + "0"
+                }
+                if isNegative > 0 {
+                    s = "-" + news + s.substring(from: s.index(s.startIndex, offsetBy: 1))
+                } else {
+                    s = news + s
+                }
+                
+                //s.insert(news, at: s.index(s.startIndex, offsetBy: isNegative))
+            } else {
+                for _ in 0..<(ex - s.characters.count + isNegative) {
+                    s.append("0")
+                }
             }
         }
         
