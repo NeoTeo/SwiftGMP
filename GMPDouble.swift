@@ -188,35 +188,78 @@ public class GMPDouble {
         return Int(__gmpf_cmp(&xl.d, &yl.d))
     }
 
-    public static func strBase(_ number: GMPDouble, _ base: Int) -> (str : String, exp : Int) {
+    /**
+     * Convert `number` to a string of digits in base `base`. Trailing zeros are not returned. 
+     * No more digits than can be accurately represented by number are ever generated.
+     *
+     * For example, the number 3.1416 would be returned as string "31416" and exponent 1.
+     *
+     * - parameter number: The number to be converted
+     * - parameter base: The base to convert to. The base argument may vary from 2 to 62 or from -2 to -36.
+     *
+     *   For `base` in the range 2..36, digits and lower-case letters are used; 
+     *   for -2..-36, digits and upper-case letters are used; for 37..62, digits, 
+     *   upper-case letters, and lower-case letters (in that significance order) are used.
+     *
+     * - returns: `(string : String?, exponent : Int)` 
+     *             A tuple with a string representation and an exponent
+     *
+     *   When `number` is zero, an empty string is produced and the exponent returned is 0.
+     */
+    public static func strBase(_ number: GMPDouble, _ base: Int) -> (string : String, exponent : Int) {
         var ti = number.d
-        var ex : Int = Int(mp_exp_t()) as Int // this is the deimal place
+        var ex : Int = Int(mp_exp_t()) // this is the deimal place
         let p = __gmpf_get_str(nil, &ex, CInt(base), 0, &ti)
-        
-        return (str : String(cString: p!), exp : ex);
+        return (string : String(cString: p!), exponent : ex);
     }
     
+    /**
+     * Converts the number to a string in base 10
+     * - parameter number: The number to be converted
+     * - returns: A string representation of `number` in base 10
+     */
     public static func string(_ number: GMPDouble) -> String {
-        let str = self.strBase(number, 10)
-        var s = str.str
-        let ex = str.exp
+        let strBase = self.strBase(number, 10)
+        var string = strBase.string
+        let exponent = strBase.exponent
         
-        let isNegative = s.characters.first == "-" ? 1 : 0;
+        if string.isEmpty {
+            return Double(0).description
+        }
         
-        //print("ex:" + String(ex) + " count: " + String(s.characters.count) + " isNegative: " + String(isNegative))
+        let isNegative = string.characters.first == "-" ? 1 : 0;
         
-        if(ex < s.characters.count - isNegative) {
+        //print("s: \(s) ex:" + String(ex) + " count: \(s?.characters.count) isNegative: " + String(isNegative))
+        
+        if(exponent > 0 && exponent < string.characters.count - isNegative) {
             // add the decimal character to the floating point
-            let si = s.index(s.startIndex, offsetBy: ex + isNegative)
-            s.insert(".", at: si)
+            let si = string.index(string.startIndex, offsetBy: exponent + isNegative)
+            string.insert(".", at: si)
         } else {
-            // add padding
-            for _ in 0..<(ex - s.characters.count + isNegative) {
-                s.append("0")
+            // add necessary padding
+            if exponent <= 0 {
+                // the number has a leading zero ie (0.00000)1
+                var news = "0."
+                for _ in 0..<(-exponent) {
+                    news = news + "0"
+                }
+                if isNegative > 0 {
+                    string = "-" + news + string.substring(from: (string.index(string.startIndex, offsetBy: 1)))
+                } else {
+                    string = news + string
+                }
+                
+                //s.insert(news, at: s.index(s.startIndex, offsetBy: isNegative))
+            } else {
+                // the number does not have a decimal ie 1(00000)
+                for _ in 0..<(exponent - string.characters.count + isNegative) {
+                    string.append("0")
+                }
+                string = string + ".0"
             }
         }
         
-        return s
+        return string
     }
     
     public var description : String {
