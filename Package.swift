@@ -3,6 +3,6 @@ import PackageDescription
 let package = Package(
     name: "SwiftGMP",
     dependencies: [
-        .Package(url: "../GMPLib", majorVersion: 0)
+        .Package(url: "https://github.com/NeoTeo/GMPLib", majorVersion: 0)
     ]
 )
