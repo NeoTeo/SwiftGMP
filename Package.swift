@@ -1,5 +1,8 @@
 import PackageDescription
 
 let package = Package(
-    name: "SwiftGMP"
-    )
+    name: "SwiftGMP",
+    dependencies: [
+        .Package(url: "../GMPLib", majorVersion: 0)
+    ]
+)
