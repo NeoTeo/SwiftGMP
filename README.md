@@ -14,7 +14,7 @@ Add the following to your project's package definition in the Package.swift file
 
 Then either build the project from the command line with:
 
-    swift build -Xliner -LPackages/GMPLib-0.1.3/macosx/
+    swift build -Xlinker -LPackages/GMPLib-0.1.3/macosx/
 
 or generate an xcode project with swift package
 
