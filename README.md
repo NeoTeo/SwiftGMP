@@ -7,8 +7,8 @@ This project is a work in progress. Currently integer and some floating-point fu
 #### [GMP](//gmplib.org)
 Currently libgmp.a 6.1.1 is included. You can rebuild it using the [GMP iOS Builder](//github.com/NeoTeo/gmp-ios-builder). 
 #### Swift Package Manager
-##### Note: Currently SPM only supports MacOS.
-Add the following to your package definition in the Package.swift file:
+##### Note: Currently SPM only supports macOS.
+Add the following to your project's package definition in the Package.swift file:
 
     dependencies: [ .Package(url: "https://github.com/NeoTeo/SwiftGMP", majorVersion: 0) ]
 
