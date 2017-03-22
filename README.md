@@ -8,7 +8,7 @@ This project is a work in progress. Currently integer and some floating-point fu
 Currently libgmp.a 6.1.1 is included. You can rebuild it using the [GMP iOS Builder](//github.com/NeoTeo/gmp-ios-builder). 
 #### Swift Package Manager
 ##### Note: Currently SPM only supports macOS.
-Add the following to your project's package definition in the Package.swift file:
+Add the following to your pROject's package definition in the Package.swift file:
 
     dependencies: [ .Package(url: "https://github.com/NeoTeo/SwiftGMP", majorVersion: 0) ]
 
@@ -20,11 +20,9 @@ or generate an xcode project with swift package
 
     swift package generate-xcodeproj -Xlinker -LPackages/GMPLib-0.1.3/macosx/
 
-#### Carthage
-Add the following to your Cartfile:
+Also you can run tests with:
 
-     github "NeoTeo/SwiftGMP" "master"
-Then, in the root of your project, type: `carthage update`  
+`swift test -Xlinker -LPackages/GMPLib-0.1.3/macosx/
 
 ##### You will then need to add frameworks to your own Xcode project:  
 1.  Select your target's Build Phases tab.  
@@ -32,7 +30,6 @@ Then, in the root of your project, type: `carthage update`
 3.  Navigate to the Carthage/Build/Mac directory in your project root and select the SwiftGMP.framework.  
 In case of a code signing error, select the target's Build Settings tab make sure the "Code Signing Identity" is either a valid identity or "Don't Code Sign".
 
-For more information on how to install via Carthage see the [README](//github.com/Carthage/Carthage#adding-frameworks-to-an-application).
 #### Swift 3
 This is part of Xcode 8.
 
