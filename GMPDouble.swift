@@ -244,7 +244,7 @@ public class GMPDouble {
                     news = news + "0"
                 }
                 if isNegative > 0 {
-                    string = "-" + news + string.substring(from: (string.index(string.startIndex, offsetBy: 1)))
+                    string = "-" + news + string[string.index(string.startIndex, offsetBy: 1)..<string.endIndex]
                 } else {
                     string = news + string
                 }
