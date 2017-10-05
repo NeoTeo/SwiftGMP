@@ -244,12 +244,10 @@ public class GMPDouble {
                     news = news + "0"
                 }
                 if isNegative > 0 {
-                    string = "-" + news + string[string.index(string.startIndex, offsetBy: 1)..<string.endIndex]
+                    string = "-" + news + String(string[string.index(string.startIndex, offsetBy: 1)...])
                 } else {
                     string = news + string
                 }
-                
-                //s.insert(news, at: s.index(s.startIndex, offsetBy: isNegative))
             } else {
                 // the number does not have a decimal ie 1(00000)
                 for _ in 0..<(exponent - string.characters.count + isNegative) {
