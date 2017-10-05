@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "GMPLib",
+        "repositoryURL": "https://github.com/NeoTeo/GMPLib.git",
+        "state": {
+          "branch": "master",
+          "revision": "80d1a30987baf2ce7fcc441359e697b9cbd90749",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
