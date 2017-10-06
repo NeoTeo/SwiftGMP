@@ -312,7 +312,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				"OTHER_LDFLAGS[sdk=iphoneos*]" = "";
 				"OTHER_LDFLAGS[sdk=macosx*]" = "";
-				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos";
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}/GMP";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -367,7 +366,6 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos";
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}/GMP";
 				VALID_ARCHS = "i386 x86_64 armv7 armv7s arm64";
