@@ -55,10 +55,10 @@ class SwiftGMPTests: XCTestCase {
     
     func testDouble() {
         print("Default precision: " + String(SwiftGMP.GMPDouble.defaultPrecision))
-        let dmax64 = SwiftGMP.GMPDouble(DBL_MAX)
+        let dmax64 = SwiftGMP.GMPDouble(.greatestFiniteMagnitude)
         print("DBL_MAX @ default prec: " + dmax64.description)
         SwiftGMP.GMPDouble.defaultPrecision = 128
-        let dmax128 = SwiftGMP.GMPDouble(DBL_MAX)
+        let dmax128 = SwiftGMP.GMPDouble(.greatestFiniteMagnitude)
         print("DBL_MAX @ 128 prec: " + dmax128.description)
         
         let twoDmax = dmax64 + dmax128
