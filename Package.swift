@@ -10,6 +10,9 @@ let package = Package(
         .library(
             name: "SwiftGMP",
             targets: ["SwiftGMP"]),
+	.library(
+	    name: "GMP",
+            targets: ["GMP"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -21,6 +24,9 @@ let package = Package(
         .target(
             name: "SwiftGMP",
             dependencies: []),
+	.target(
+	    name: "GMP",
+	    dependencies: []),
         .testTarget(
             name: "SwiftGMPTests",
             dependencies: ["SwiftGMP"]),
