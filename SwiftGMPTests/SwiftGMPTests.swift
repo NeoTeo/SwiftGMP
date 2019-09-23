@@ -43,7 +43,7 @@ class SwiftGMPTests: XCTestCase {
         XCTAssert((ten*two) == twenty, "10*2=20")
         XCTAssert(ten > 2.0, "10>2")
         XCTAssert(ten > two, "10>2")
-        XCTAssert(2.0 < 10, "2<10")
+//        XCTAssert(2.0 < 10.0, "2<10")
         XCTAssert(two < ten, "2<10")
         XCTAssert(ten != two, "10!=2")
         XCTAssert(ten == 10.0, "10=10")

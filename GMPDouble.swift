@@ -227,11 +227,11 @@ public class GMPDouble {
             return Double(0).description
         }
         
-        let isNegative = string.characters.first == "-" ? 1 : 0;
+        let isNegative = string.first == "-" ? 1 : 0;
         
         //print("s: \(s) ex:" + String(ex) + " count: \(s?.characters.count) isNegative: " + String(isNegative))
         
-        if(exponent > 0 && exponent < string.characters.count - isNegative) {
+        if(exponent > 0 && exponent < string.count - isNegative) {
             // add the decimal character to the floating point
             let si = string.index(string.startIndex, offsetBy: exponent + isNegative)
             string.insert(".", at: si)
@@ -250,7 +250,7 @@ public class GMPDouble {
                 }
             } else {
                 // the number does not have a decimal ie 1(00000)
-                for _ in 0..<(exponent - string.characters.count + isNegative) {
+                for _ in 0..<(exponent - string.count + isNegative) {
                     string.append("0")
                 }
                 string = string + ".0"
